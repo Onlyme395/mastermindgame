@@ -48,6 +48,9 @@ std::string CompareGuess(const int &iGuess, const int &iMaster) {
 	std::string sMaster = (std::to_string(iMaster));
 	std::string iResult;
 
+
+	// Cleaning up the strings so there's at least 4 digits in both the
+	// master code, and the guess code.
 	while (sMaster.length() < 4) {
 		sMaster.insert(0, "0");
 	}
@@ -56,7 +59,6 @@ std::string CompareGuess(const int &iGuess, const int &iMaster) {
 		sGuess.insert(0, "0");
 	}
 
-	// debugging - seeing the master with the guess.
 
 	if (sGuess.compare(sMaster) == 0)
 	{
@@ -67,6 +69,7 @@ std::string CompareGuess(const int &iGuess, const int &iMaster) {
 
 	do { // Now compare the strings together using the rules of the game
 		std::string cAnswer("O");
+		// Am able to debug the code if I can see what the master, and the guess is.
 		//std::cout << "Master is: " << sMaster << std::endl;
 		//std::cout << "Guess is: " << sGuess << std::endl;
 		bool found = false;
@@ -96,31 +99,25 @@ std::string CompareGuess(const int &iGuess, const int &iMaster) {
 	return iResult;
 }
 
-
-int DisplayResult()
-{
-	return 0;
-}
-
-
 int _tmain(int argc, _TCHAR* argv[])
 {
-	// establish variables for the game, as well as the lists for comparison.
+	// establish variables for the game.
 	bool win = 0;
 	int mastermind, guess, attempts = 0;
 	std::string compared = "";
-	// Generate the random seed for the mastermind..
 
+	// Generate the random seed for the mastermind..
 	srand(time(NULL));
 	mastermind = rand() % 10000;
 
-	// for Debugging less than 1000
+	//for setting any number
 	//mastermind = 254;
 
 	std::cout << "Welcome to mastermind. The code has been generated. Break it, if you can!"; // << mastermind << std::endl;
 	std::cout << std::endl;
-	// The Loop for the game. Keeps going until you win.
 
+
+	// The Loop for the game. Keeps going until you win.
 	do {
 
 		// Ask user for X digit number Number
@@ -129,11 +126,11 @@ int _tmain(int argc, _TCHAR* argv[])
 		// Compare digits against the mastermind
 		compared = CompareGuess(guess, mastermind);
 
-		// Display their results, with placements
-		//DisplayResult();
+		// If we did not win, display the result in the console
 		if (guess != mastermind)
 			std::cout << compared << std::endl;
 
+		// If we won
 		if (guess == mastermind)
 			win = 1;
 
