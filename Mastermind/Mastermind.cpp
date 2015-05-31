@@ -7,21 +7,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <list>
 #include <string>
 
 /*
 The Game Mastermind. The game where you have to guess the numbers correctly in as few attempts as possible.
 
-Tasks the game requires:
-Create a random number between 0000, and 9999
-Split the number into 4 separate ones. {w, x, y, z}. Track the positions of each number.
+The game works as follows
 Set the attempts number to 0.
-Get User Input with a 4 digit number
-Incriment attempt count
-Split the number into an array. {a, b, c, d}
+Create a random number between 0 and 9999
+
+Grab user Input for Number
+Send both numbers into strings.
+
 Compare the input with each number separately.
-If number is wrong, display a -. If that number exists, but the position is wrong, show an O. If it exists, and the position is correct, display an X.
+If number is non-existant, display an O.
+If that number exists but the position is wrong, show a 0.
+If it exists, and the position is correct, display an X.
+Attempts counter goes up.
+
 
 Game is won when user has guessed the correct combination
 
